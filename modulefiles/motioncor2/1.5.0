@@ -1,0 +1,18 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tUCSF MotionCor2, version 1.5.0"
+}
+
+module-whatis "Motion correction program. Documentation: https://emcore.ucsf.edu/ucsf-motioncor2"
+
+module load cuda/11.2.2
+prereq cuda
+
+# To avoid repetitions in this module file
+set program motioncor2
+set version 1.5.0
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin

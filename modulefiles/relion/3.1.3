@@ -1,0 +1,60 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tRELION, version 3.1.3 (CUDA 11.2.2)"
+}
+
+module-whatis "2D classification, 3D classification and 3D refinement. Documentation: https://relion.readthedocs.io/en/release-3.1/"
+
+module load mpi/openmpi-x86_64 cuda/11.2.2 motioncor2/1.5.0 cistem/1.0.0-beta
+
+prereq mpi
+prereq cuda
+prereq motioncor2
+prereq cistem
+
+# To avoid repetitions in this module file
+set program relion
+set version 3.1.3
+set prefix /opt/$program-$version
+
+# Where to find other programs
+setenv RELION_MOTIONCOR2_EXECUTABLE MotionCor2_1.5.0_Cuda112_05-31-2022
+setenv RELION_CTFFIND_EXECUTABLE ctffind
+#setenv RELION_RESMAP_EXECUTABLE ResMap
+setenv RELION_PDFVIEWER_EXECUTABLE evince
+
+# MPI and threads settings
+# Ask for confirmation if users try to submit local jobs with more than 9 MPI processes. Rationale: 9 MPIs means 1 coordinator + 4GPUs x 2 workers.
+setenv RELION_WARNING_LOCAL_MPI 64
+# It doesn't help to overbook the GPUs too much. 13 MPIs means 1 coordinator + 4GPUs x 3 workers.
+# But some programs like CTFFIND and RELION's MotionCor run on CPUs, so the hard limit on MPI processes should be half the CPU cores.
+setenv RELION_MPI_MAX 128
+setenv RELION_ERROR_LOCAL_MPI 129
+# Maximum number of threads per MPI process available from the GUI
+setenv RELION_THREAD_MAX 128
+
+# Shell to launch other programs from
+setenv RELION_SHELL bash
+
+# Scratch location
+# (unique to each SLURM job)
+setenv RELION_SCRATCH_DIR "/scratch/relion/\$SLURM_JOBID-\$SLURM_JOB_NAME"
+
+# Settings to work correctly with SLURM
+setenv RELION_QUEUE_USE yes
+setenv RELION_QUEUE_NAME main
+setenv RELION_QSUB_COMMAND sbatch
+setenv RELION_QSUB_TEMPLATE /opt/share/slurm/slurm-submission-relion-3.1.3.sh
+setenv RELION_ALLOW_CHANGE_MINIMUM_DEDICATED 0
+setenv RELION_QSUB_EXTRA_COUNT 2
+setenv RELION_QSUB_EXTRA1 "Number of GPUs"
+setenv RELION_QSUB_EXTRA1_HELP "Number of GPUs to request from the resource management system (maximum 4). The number of GPUs and the job type influence how many MPI processes and threads will give optimal performance. Here are settings that work optimally on our computers. For MotionCor and AutoPick jobs: set the number of MPI processes equal to the number of GPUs, leave the number of threads to 1. For Class2D jobs: set the number of MPI processes such that MPIs = GPUs * 2 + 1, and set the number of threads to 2. For InitialModel, Class3D, Refine3D and MultiBody jobs: set the number of MPI processes such that MPIs = GPUs + 1, and set the number of threads to 4. NONE OF THE OTHER JOB TYPES USES GPU ACCELERATION, SO ONLY REQUEST GPUs FOR THE JOB TYPES MENTIONED ABOVE."
+setenv RELION_QSUB_EXTRA1_DEFAULT 0
+setenv RELION_QSUB_EXTRA2 "RAM (GB)"
+setenv RELION_QSUB_EXTRA2_HELP "Estimated memory use. Max 512 GB. Increase if job crashes with default value."
+setenv RELION_QSUB_EXTRA2_DEFAULT 64
+
+prepend-path PATH $prefix/bin
+prepend-path LD_LIBRARY_PATH $prefix/lib

@@ -1,0 +1,27 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tDynamo, version 1.1.532 (CUDA 11.2.2)"
+}
+
+module-whatis "Suite of programs for subtomogram averaging. Documentation: https://www.wiki.dynamo.biozentrum.unibas.ch"
+
+module load cuda/11.2.2
+
+prereq cuda
+
+# To avoid repetitions in this module file
+set program dynamo
+set version 1.1.532
+set prefix /opt/$program-$version
+
+set DYNAMO_FOLDER /opt/$program-$version
+set MCR_ROOT $DYNAMO_FOLDER/MCRLinux
+prepend-path LD_LIBRARY_PATH $MCR_ROOT/runtime/glnxa64
+prepend-path LD_LIBRARY_PATH $MCR_ROOT/bin/glnxa64
+prepend-path LD_LIBRARY_PATH $MCR_ROOT/sys/os/glnxa64
+
+set DYNAMO_ROOT /opt/$program-$version
+
+

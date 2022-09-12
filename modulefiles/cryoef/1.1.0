@@ -1,0 +1,25 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tcryoEF, version 1.1.0"
+}
+
+module-whatis "A program to analyze the orientation distribution of single-particle cryoEM data. Documentation: https://www.mrc-lmb.cam.ac.uk/crusso/cryoEF"
+
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker deepemhancer pymol starparser cryodrgn findmysequence cryocare
+
+# To avoid repetitions in this module file
+set program cryoef
+set version 1.1.0
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin
+
+# A script distributed with cryoEF depends on Python3, numpy, matplotlib and pandas
+set condaprefix /opt/miniconda3/envs/cryoef-1.1.0
+prepend-path PATH $condaprefix/bin
+prepend-path INCLUDE $condaprefix/include
+prepend-path LD_LIBRARY_PATH $condaprefix/lib
+prepend-path MANPATH $condaprefix/share/man
+

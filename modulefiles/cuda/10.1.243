@@ -1,0 +1,23 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tCUDA Libraries and Toolkit, version 10.1.243"
+}
+
+module-whatis "CUDA Libraries and Toolkit. Documentation: https://docs.nvidia.com/cuda/archive/10.1.243"
+
+conflict cuda
+
+# To avoid repetitions in this module file
+set program cuda
+set version 10.1.243
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin
+prepend-path LD_LIBRARY_PATH $prefix/lib64
+prepend-path CPATH $prefix/include
+prepend-path C_INCLUDE_PATH $prefix/include
+prepend-path CPLUS_INCLUDE_PATH $prefix/include
+prepend-path INCLUDE $prefix/include
+setenv CUDA_HOME $prefix

@@ -1,0 +1,13 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tCryoEM utilities"
+}
+
+module-whatis "Various utilities and scripts."
+
+conflict pyem epu-group-afis imod topaz cryodrgn cryolo kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare
+
+prepend-path PATH /opt/miniconda3/envs/cryoem-utilities/bin
+prepend-path PATH /opt/cryoem-scripts

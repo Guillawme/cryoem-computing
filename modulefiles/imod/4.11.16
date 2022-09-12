@@ -1,0 +1,36 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tIMOD, version 4.11.16"
+}
+
+module-whatis "Many utilities for image conversion, and programs for tomography. Homepage: https://bio3d.colorado.edu/imod/"
+
+conflict pyem epu-group-afis cryolo topaz cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare
+
+module load cuda/10.1.243
+
+prereq cuda
+
+# To avoid repetitions in this module file
+set program imod
+set version 4.11.16
+set prefix /opt/$program-$version
+
+setenv IMOD_DIR $prefix
+setenv IMOD_JAVADIR /usr/bin/java
+setenv IMOD_PLUGIN_DIR $prefix/lib/imodplug
+setenv IMOD_QTLIBDIR $prefix/qtlib
+setenv FOR_DISABLE_STACK_TRACE 1
+
+prepend-path PATH $prefix/bin
+prepend-path LD_LIBRARY_PATH $prefix/lib
+prepend-path MANPATH $prefix/man
+
+# IMOD needs a python executable on PATH, while Rocky provides a python3
+set condaprefix /opt/miniconda3/envs/$program
+prepend-path PATH $condaprefix/bin
+prepend-path INCLUDE $condaprefix/include
+prepend-path LD_LIBRARY_PATH $condaprefix/lib
+prepend-path MANPATH $condaprefix/share/man

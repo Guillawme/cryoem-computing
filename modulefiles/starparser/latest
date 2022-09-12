@@ -1,0 +1,18 @@
+#%Module1.0
+  
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tstarparser, latest version"
+}
+
+module-whatis "Manipulate and mine Relion .star files. Documentation: https://github.com/sami-chaaban/starparser"
+
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker deepemhancer pymol cryodrgn cryoef findmysequence cryocare
+
+# To avoid repetitions in this module file
+set program starparser
+set version latest
+set condaprefix /opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+prepend-path PATH $prefix/bin

@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tdeepEMhancer, version 0.13"
+}
+
+module-whatis "Neural net for cryoEM map post-processing. Documentation: https://github.com/rsanchezgarc/deepEMhancer"
+
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker cryodrgn pymol starparser cryoef findmysequence cryocare
+
+# To avoid repetitions in this module file
+set program deepemhancer
+set version 0.13
+set condaprefix /opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+setenv DEEPEMHANCERPATH $prefix
+prepend-path PATH $prefix/bin

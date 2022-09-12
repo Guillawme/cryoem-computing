@@ -1,0 +1,18 @@
+#%Module1.0
+  
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tfindmysequence, version 0.9.2"
+}
+
+module-whatis "Assign protein sequence from a model and a map. Documentation: https://gitlab.com/gchojnowski/findmysequence"
+
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker deepemhancer pymol cryodrgn cryoef starparser cryocare
+
+# To avoid repetitions in this module file
+set program findmysequence
+set version 0.9.2
+set condaprefix /opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+prepend-path PATH $prefix/bin

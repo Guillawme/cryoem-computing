@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tcryoCARE, latest version"
+}
+
+module-whatis "Neural net for cryoET tomogram denoising. Documentation: https://github.com/juglab/cryoCARE_pip"
+
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker cryodrgn pymol starparser cryoef findmysequence deepemhancer
+
+# To avoid repetitions in this module file
+set program cryocare
+set version latest
+set condaprefix /opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+setenv CRYOCAREPATH $prefix
+prepend-path PATH $prefix/bin
