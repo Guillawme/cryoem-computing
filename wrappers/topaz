@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source /opt/miniconda3/etc/profile.d/conda.sh
+conda activate topaz-0.2.5
+
+topaz $@
+
+conda deactivate
+
