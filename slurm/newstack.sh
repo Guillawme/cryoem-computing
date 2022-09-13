@@ -18,5 +18,7 @@ BIN=1 #leave this to 1 if binning was done by MotionCor2
 module purge
 module load imod
 
-srun newstack `ls $RAW_DATA_DIR/*.mrc | sort -t [ -n -k 2` -bin $BIN $OUTPUT_FILE
+# Correct sorting depends on the filename pattern.
+# You may need to adjust the sort command for your files.
+srun newstack $(ls $RAW_DATA_DIR/*.mrc | sort -t [ -n -k 2) -bin $BIN $OUTPUT_FILE
 
