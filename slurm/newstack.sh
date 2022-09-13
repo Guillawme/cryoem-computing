@@ -11,8 +11,8 @@
 #SBATCH --error=newstack.log
 #SBATCH --open-mode=append
 
-RAW_DATA_DIR=mcor2
-OUTPUT_FILE=position-6-tilt-series.mrc
+RAW_DATA_DIR=frames/
+OUTPUT_FILE=new-stack.mrc
 BIN=1 #leave this to 1 if binning was done by MotionCor2
 
 module purge
