@@ -14,7 +14,6 @@
 DATA_PATH=/path/to/input/images/*.mrc
 OUT_PATH=/path/to/output/folder
 
-
 module purge
 module load topaz/0.2.5
 
