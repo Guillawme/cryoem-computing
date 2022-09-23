@@ -1,0 +1,16 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tcisTEM, latest version: d11eb1e0"
+}
+
+module-whatis "Complete software suite for cryo-EM single-particle analysis. Homepage: https://cistem.org"
+
+# To avoid repetitions in this module file
+set program cistem
+set version latest
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin
+
