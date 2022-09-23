@@ -50,7 +50,7 @@ setenv RELION_SCRATCH_DIR "/scratch/relion/\$SLURM_JOBID-\$SLURM_JOB_NAME"
 setenv RELION_QUEUE_USE yes
 setenv RELION_QUEUE_NAME main
 setenv RELION_QSUB_COMMAND sbatch
-setenv RELION_QSUB_TEMPLATE /opt/share/slurm/slurm-submission-relion-4.0-beta.sh
+setenv RELION_QSUB_TEMPLATE /opt/share/slurm/relion-4.0-beta.sh
 setenv RELION_ALLOW_CHANGE_MINIMUM_DEDICATED 0
 setenv RELION_QSUB_EXTRA_COUNT 2
 setenv RELION_QSUB_EXTRA1 "Number of GPUs"
