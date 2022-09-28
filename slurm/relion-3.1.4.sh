@@ -13,7 +13,7 @@
 
 ## Set up environment
 module purge
-module load relion/4.0-beta
+module load relion/3.1.4
 
 ## Print info
 echo "=== JOB INFO ========================================="
