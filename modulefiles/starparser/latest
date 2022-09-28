@@ -7,7 +7,7 @@ puts stderr "\tstarparser, latest version"
 
 module-whatis "Manipulate and mine Relion .star files. Documentation: https://github.com/sami-chaaban/starparser"
 
-conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker deepemhancer pymol cryodrgn cryoef findmysequence cryocare
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker deepemhancer pymol cryodrgn cryoef findmysequence cryocare eman2
 
 # To avoid repetitions in this module file
 set program starparser
