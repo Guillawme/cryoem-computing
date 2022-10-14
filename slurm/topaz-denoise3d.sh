@@ -14,8 +14,18 @@
 DATA_PATH=/path/to/input/images/*.mrc
 OUT_PATH=/path/to/output/folder
 
+# Remember to check which modulefile version is the default one
+# You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load topaz/0.2.5
+module load topaz
 
-srun topaz denoise3d $DATA_PATH --model unet-3d-10a --device -2 -j 32 --gaussian 0 --patch-size 96 --patch-padding 48 --output $OUT_PATH
+srun topaz denoise3d \
+	$DATA_PATH \
+	--model unet-3d-10a \
+	--device -2 \ # will use all GPUs requested with --gres=gpu:
+	-j -1 \ # will use all cores requested with --cpus-per-task
+	--gaussian 0 \
+	--patch-size 96 \
+	--patch-padding 48 \
+	--output $OUT_PATH
 

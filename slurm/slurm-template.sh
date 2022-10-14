@@ -20,6 +20,8 @@
 #SBATCH --open-mode=append
 
 # Indicate the adequate modules to load for your job here (if not using any module, simply delete these two lines)
+# Remember to check which modulefile version is the default one
+# You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
 module load #<module1> <module2>
 

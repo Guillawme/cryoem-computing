@@ -4,8 +4,8 @@
 #SBATCH --partition=main
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=64GB
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=16GB
 #SBATCH --oversubscribe
 #SBATCH --output=dm2mrc.log
 #SBATCH --error=dm2mrc.log
@@ -14,6 +14,8 @@
 RAW_DATA_DIR=raw
 OUTPUT_DIR=mrc
 
+# Remember to check which modulefile version is the default one
+# You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
 module load imod
 
@@ -21,9 +23,7 @@ if [[ ! -d $OUTPUT_DIR ]]; then
 	mkdir -p $OUTPUT_DIR
 fi
 
-for dmfile in $RAW_DATA_DIR/*.dm3; do
-	dm2mrc $dmfile $dmfile.mrc;
+for dmfile in ${RAW_DATA_DIR}/*.dm3; do
+	dm2mrc $dmfile ${OUTPUT_DIR}/${dmfile}.mrc
 done
-
-mv $RAW_DATA_DIR/*.mrc $OUTPUT_DIR/
 

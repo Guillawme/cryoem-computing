@@ -19,17 +19,39 @@ KV=200
 #FMDOSE=0.28 # uncomment this and set dose per frame to use dose weighting
 FTBIN=2
 
-# Make sure output directory exists (MotionCor2 won't create it if it does not already exist...)
+# Make sure output directory exists (MotionCor2 won't create it
+# if it does not already exist...)
 if [[ ! -d $OUTPUT_DIR ]]; then
 	mkdir -p $OUTPUT_DIR
 fi
 
+# Remember to check which modulefile version is the default one
+# You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load motioncor2/1.5.0
+module load motioncor2
 
 if [[ -v FMDOSE ]]; then
-	srun MotionCor2 -InMrc $RAW_DATA_DIR -OutMrc $OUTPUT_DIR -Serial 1 -LogDir $OUTPUT_DIR -Patch $PATCH -PixSize $PIXSIZE -Kv $KV -FmDose $FMDOSE -FtBin $FTBIN -Gpu 0 1 2 3
+	srun MotionCor2 \
+		-InMrc $RAW_DATA_DIR \
+		-OutMrc $OUTPUT_DIR \
+		-Serial 1 \
+		-LogDir $OUTPUT_DIR \
+		-Patch $PATCH \
+		-PixSize $PIXSIZE \
+		-Kv $KV \
+		-FmDose $FMDOSE \
+		-FtBin $FTBIN \
+		-Gpu 0 1 2 3
 else
-	srun MotionCor2 -InMrc $RAW_DATA_DIR -OutMrc $OUTPUT_DIR -Serial 1 -LogDir $OUTPUT_DIR -Patch $PATCH -PixSize $PIXSIZE -Kv $KV -FtBin $FTBIN -Gpu 0 1 2 3
+	srun MotionCor2 \
+		-InMrc $RAW_DATA_DIR \
+		-OutMrc $OUTPUT_DIR \
+		-Serial 1 \
+		-LogDir $OUTPUT_DIR \
+		-Patch $PATCH \
+		-PixSize $PIXSIZE \
+		-Kv $KV \
+		-FtBin $FTBIN \
+		-Gpu 0 1 2 3
 fi
 

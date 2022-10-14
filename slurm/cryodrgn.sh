@@ -9,7 +9,7 @@
 ## and run it with the command: sbatch job-script.sh
 ## You can see the status of your job in the queue with the command: squeue
 
-#SBATCH --job-name=cryodrgn
+#SBATCH --job-name=
 #SBATCH --partition=main
 #SBATCH --gres=gpu:1
 #SBATCH --ntasks=1
@@ -30,25 +30,24 @@ LAYERS=3
 DIM=128
 EPOCHS=20
 
-# If continuing a previous run, add this option to the command:
-# (make sure you specify the correct epoch as new starting point)
-# --load $SLURM_JOB_NAME/weights.49.pkl \
-
-# Load cryodrgn
+# Remember to check which modulefile version is the default one
+# You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load cryodrgn/1.1.0
+module load cryodrgn
 
 # Copy particles to a unique scratch directory
-# This is only relevant when using the --lazy option
-# as without --lazy the particles are read in RAM
+# Only useful if using the --lazy option below
 SCRATCH_DIR=/scratch/cryodrgn/$SLURM_JOBID-$SLURM_JOB_NAME
 mkdir -p $SCRATCH_DIR
 rsync -auh $PARTICLES $SCRATCH_DIR/
 
+# If continuing a previous run, add this option to the command:
+# --load $SLURM_JOB_NAME/weights.49.pkl \
+
 # Run training
 srun cryodrgn train_vae \
 	$SCRATCH_DIR/$PARTICLES \
-	--lazy \ # only necessary if using a scratch directory
+	--lazy \ # only necessary if particles are on an SSD and won't fit in RAM
 	--multigpu \ # only necessary if requesting more than 1 GPU
 	--max-threads 32 \ # set this to the same value as --cpus-per-task
 	--outdir $OUTPUT_DIR \
