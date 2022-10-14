@@ -7,7 +7,7 @@ puts stderr "\tCryoEM utilities"
 
 module-whatis "Various utilities and scripts."
 
-conflict pyem epu-group-afis imod topaz cryodrgn cryolo kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2
+conflict pyem epu-group-afis imod topaz cryodrgn cryolo kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2 model-angelo
 
 prepend-path PATH /opt/miniconda3/envs/cryoem-utilities/bin
 prepend-path PATH /opt/cryoem-scripts

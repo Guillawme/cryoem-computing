@@ -7,7 +7,7 @@ puts stderr "\tIMOD, version 4.11.16"
 
 module-whatis "Many utilities for image conversion, and programs for tomography. Homepage: https://bio3d.colorado.edu/imod/"
 
-conflict pyem epu-group-afis cryolo topaz cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare
+conflict pyem epu-group-afis cryolo topaz cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2 model-angelo
 
 module load cuda/10.1.243
 
@@ -34,3 +34,4 @@ prepend-path PATH $condaprefix/bin
 prepend-path INCLUDE $condaprefix/include
 prepend-path LD_LIBRARY_PATH $condaprefix/lib
 prepend-path MANPATH $condaprefix/share/man
+

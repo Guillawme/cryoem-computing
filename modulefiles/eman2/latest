@@ -7,7 +7,7 @@ puts stderr "\tEMAN2, latest version"
 
 module-whatis "Image processing suite for SPA and STA. Documentation: https://blake.bcm.edu/emanwiki/EMAN2"
 
-conflict pyem epu-group-afis imod cryolo cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare topaz
+conflict pyem epu-group-afis imod cryolo cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare topaz model-angelo
 
 # To avoid repetitions in this module file
 set program eman2

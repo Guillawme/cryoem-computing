@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tUCSF AreTomo, version 1.3.0"
+}
+
+module-whatis "Automated tilt series alignment and tomogram reconstruction. Documentation: https://doi.org/10.1016/j.yjsbx.2022.100068"
+
+module load cuda/11.2.2
+prereq cuda
+
+# To avoid repetitions in this module file
+set program aretomo
+set version 1.3.0
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin
+

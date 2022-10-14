@@ -7,7 +7,7 @@ puts stderr "\tcryoCARE, latest version"
 
 module-whatis "Neural net for cryoET tomogram denoising. Documentation: https://github.com/juglab/cryoCARE_pip"
 
-conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker cryodrgn pymol starparser cryoef findmysequence deepemhancer eman2
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker cryodrgn pymol starparser cryoef findmysequence deepemhancer eman2 model-angelo
 
 # To avoid repetitions in this module file
 set program cryocare

@@ -7,7 +7,7 @@ puts stderr "\tEPU_group_AFIS, latest version"
 
 module-whatis "A program to assign optics groups to movies collected with beam shift in EPU. Documentation: https://github.com/DustinMorado/EPU_group_AFIS"
 
-conflict imod pyem cryolo topaz cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2
+conflict imod pyem cryolo topaz cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2 model-angelo
 
 prepend-path PATH /opt/miniconda3/envs/epu-group-afis/bin
 prepend-path PATH /opt/epu-group-afis

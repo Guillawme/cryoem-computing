@@ -7,7 +7,7 @@ puts stderr "\tcryoEF, version 1.1.0"
 
 module-whatis "A program to analyze the orientation distribution of single-particle cryoEM data. Documentation: https://www.mrc-lmb.cam.ac.uk/crusso/cryoEF"
 
-conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker deepemhancer pymol starparser cryodrgn findmysequence cryocare eman2
+conflict pyem epu-group-afis imod cryolo topaz cryoem-utilities kltpicker deepemhancer pymol starparser cryodrgn findmysequence cryocare eman2 model-angelo
 
 # To avoid repetitions in this module file
 set program cryoef
