@@ -12,12 +12,13 @@
 #SBATCH --open-mode=append
 
 RAW_DATA_DIR=./raw/
+GAIN_REF=gain.mrc
 OUTPUT_DIR=./mcor2/
 PATCH="5 5"
-PIXSIZE=4.54
+PIXSIZE=1.01
 KV=200
-#FMDOSE=0.28 # uncomment this and set dose per frame to use dose weighting
-FTBIN=2
+#FMDOSE=0.28 # uncomment this and set dose per frame to perform dose weighting
+FTBIN=1
 
 # Make sure output directory exists (MotionCor2 won't create it
 # if it does not already exist...)
@@ -34,6 +35,7 @@ if [[ -v FMDOSE ]]; then
 	srun MotionCor2 \
 		-InMrc $RAW_DATA_DIR \
 		-OutMrc $OUTPUT_DIR \
+		-Gain $GAIN_REF \
 		-Serial 1 \
 		-LogDir $OUTPUT_DIR \
 		-Patch $PATCH \
@@ -46,6 +48,7 @@ else
 	srun MotionCor2 \
 		-InMrc $RAW_DATA_DIR \
 		-OutMrc $OUTPUT_DIR \
+		-Gain $GAIN_REF \
 		-Serial 1 \
 		-LogDir $OUTPUT_DIR \
 		-Patch $PATCH \

@@ -11,6 +11,7 @@
 #SBATCH --error=dm2mrc.log
 #SBATCH --open-mode=append
 
+DM_EXTENSION=dm3 # this depends on the version of Digital Micrograph
 RAW_DATA_DIR=raw
 OUTPUT_DIR=mrc
 
@@ -23,7 +24,7 @@ if [[ ! -d $OUTPUT_DIR ]]; then
 	mkdir -p $OUTPUT_DIR
 fi
 
-for dmfile in ${RAW_DATA_DIR}/*.dm3; do
+for dmfile in ${RAW_DATA_DIR}/*.${DM_EXTENSION}; do
 	dm2mrc $dmfile ${OUTPUT_DIR}/${dmfile}.mrc
 done
 
