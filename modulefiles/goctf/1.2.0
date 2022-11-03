@@ -1,0 +1,16 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tgoCTF, version 1.2.0"
+}
+
+module-whatis "Geometrically optimized CTF estimation program for tilted micrographs. Documentation: https://doi.org/10.1016/j.jsb.2018.11.012"
+
+# To avoid repetitions in this module file
+set program goctf
+set version 1.2.0
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin
+
