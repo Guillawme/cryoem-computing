@@ -1,0 +1,13 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tPyMOL, latest version"
+}
+
+module-whatis "Molecular graphics. Documentation: https://pymol.org/2"
+
+conflict imod epu-group-afis cryolo topaz cryodrgn cryoem-utilities kltpicker deepemhancer starparser cryoef findmysequence cryocare eman2 model-angelo
+
+prepend-path PATH /opt/miniconda3/envs/pymol-latest/bin
+

@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tMATLAB Runtime, version R2021b (9.11)"
+}
+
+module-whatis "MATLAB Runtime. Homepage: https://se.mathworks.com/products/compiler/matlab-runtime.html"
+
+# To avoid repetitions in this module file
+set program matlab-runtime
+set version R2021b
+set prefix /opt/$program-$version
+
+prepend-path LD_LIBRARY_PATH $prefix/v911/extern/bin/glnxa64
+prepend-path LD_LIBRARY_PATH $prefix/v911/sys/os/glnxa64
+prepend-path LD_LIBRARY_PATH $prefix/v911/bin/glnxa64
+prepend-path LD_LIBRARY_PATH $prefix/v911/runtime/glnxa64
+

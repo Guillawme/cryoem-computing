@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tmodel-angelo, version 1.0.1"
+}
+
+module-whatis "Automatic model building in cryoEM maps. Documentation: https://github.com/3dem/model-angelo"
+
+conflict pyem epu-group-afis imod cryolo cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2 topaz occupy
+
+# To avoid repetitions in this module file
+set program model-angelo
+set version 1.0.1
+set condaprefix /opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+prepend-path PATH $prefix/bin
+

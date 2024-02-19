@@ -1,0 +1,17 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tBreadth-First Search, version 3.0.1"
+}
+
+module-whatis "A breadth-first version of the UNIX find command. Documentation: https://github.com/tavianator/bfs"
+
+# To avoid repetitions in this module file
+set program bfs
+set version 3.0.1
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin
+prepend-path MANPATH $prefix/share/man
+

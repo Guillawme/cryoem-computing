@@ -1,0 +1,16 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tAliView"
+}
+
+module-whatis "Sequence alignment viewer. Documentation: https://ormbunkar.se/aliview"
+
+# To avoid repetitions in this module file
+set program aliview
+set version 1.28
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix
+

@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tOccuPy, latest version"
+}
+
+module-whatis "Estimate the local scale of cryo-EM maps. Documentation: https://occupy.readthedocs.io/en/latest"
+
+conflict pyem epu-group-afis imod cryolo cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2 topaz model-angelo
+
+# To avoid repetitions in this module file
+set program occupy
+set version latest
+set condaprefix /opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+prepend-path PATH $prefix/bin
+

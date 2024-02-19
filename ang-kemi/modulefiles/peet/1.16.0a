@@ -1,0 +1,24 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tPEET, version 1.16.0a"
+}
+
+module-whatis "Subtomogram averaging program. Homepage: https://bio3d.colorado.edu/peet/"
+
+module load imod/4.11.24 matlab-runtime/R2021b 
+
+prereq imod
+prereq matlab-runtime
+
+# To avoid repetitions in this module file
+set program peet
+set version 1.16.0a
+set prefix /opt/$program-$version
+
+setenv PARTICLE_DIR $prefix
+
+prepend-path PATH $prefix/bin
+prepend-path MANPATH $prefix/man
+
