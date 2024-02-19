@@ -1,0 +1,16 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tGlobus Connect Personal, version 3.2.2"
+}
+
+module-whatis "File transfer program. Documentation: https://docs.globus.org/how-to/get-started/"
+
+# To avoid repetitions in this module file
+set program globusconnectpersonal
+set version 3.2.2
+set prefix /home/guillaume/opt/$program-$version
+
+prepend-path PATH $prefix
+

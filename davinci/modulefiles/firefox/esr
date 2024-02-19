@@ -1,0 +1,11 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tFirefox Extended Support Release (ESR)"
+}
+
+module-whatis "Web browser. Documentation: https://www.mozilla.org/en-US/firefox"
+
+prepend-path PATH /home/guillaume/opt/bin
+

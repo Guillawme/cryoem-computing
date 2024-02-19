@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source /home/guillaume/opt/miniconda3/etc/profile.d/conda.sh
+conda activate deepemhancer-0.14
+
+deepemhancer $@
+
+conda deactivate
+
