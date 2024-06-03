@@ -20,10 +20,10 @@ MASK=mask.mrc
 OUTPUT=modelangelo
 
 # This is a global, shared location and should not be changed
-WEIGHTS=/opt/model-angelo-1.0.1/weights/hub/checkpoints/model_angelo_v1.0/nucleotides_no_seq
+WEIGHTS=/opt/model-angelo-1.0.12/hub/checkpoints/model_angelo_v1.0/nucleotides_no_seq
 
 module purge
-module load model-angelo/1.0.1
+module load model-angelo/1.0.12
 
 srun model_angelo build_no_seq \
 	-v $MAP \

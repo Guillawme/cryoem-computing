@@ -19,10 +19,10 @@ RNA_FASTA=rna-sequences.fasta
 OUTPUT=modelangelo
 
 # This is a global, shared location and should not be changed
-WEIGHTS=/opt/model-angelo-1.0.1/weights/hub/checkpoints/model_angelo_v1.0/nucleotides
+WEIGHTS=/opt/model-angelo-1.0.12/hub/checkpoints/model_angelo_v1.0/nucleotides
 
 module purge
-module load model-angelo/1.0.1
+module load model-angelo/1.0.12
 
 srun model_angelo build \
 	-v $MAP \
