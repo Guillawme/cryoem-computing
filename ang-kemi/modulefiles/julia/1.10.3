@@ -2,16 +2,17 @@
 
 proc ModulesHelp { } {
 global dotversion
-puts stderr "\tJulia, version 1.9.3"
+puts stderr "\tJulia, version 1.10.3"
 }
 
 module-whatis "A high-level, high-performance programming language for technical computing. Homepage: https://julialang.org"
 
 # To avoid repetitions in this module file
 set program julia
-set version 1.9.3
+set version 1.10.3
 set prefix /opt/$program-$version
 
 prepend-path PATH $prefix/bin
 prepend-path MANPATH $prefix/share/man
+setenv JULIA_SSL_CA_ROOTS_PATH /etc/ssl/certs/ca-bundle.crt
 

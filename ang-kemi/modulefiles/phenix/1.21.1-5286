@@ -2,14 +2,14 @@
 
 proc ModulesHelp { } {
 global dotversion
-puts stderr "\tPHENIX suite, version 1.20.1-4487"
+puts stderr "\tPHENIX suite, version 1.21.1-5286"
 }
 
 module-whatis "Macromolecular refinement against crystallographic and cryoEM data. Documentation: https://www.phenix-online.org/documentation" 
 
 # To avoid repetitions in this module file
 set program phenix
-set version 1.20.1-4487
+set version 1.21.1-5286
 set prefix /opt/$program-$version
 
 # Set environment

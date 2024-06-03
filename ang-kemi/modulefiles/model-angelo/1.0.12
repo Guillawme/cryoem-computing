@@ -2,7 +2,7 @@
 
 proc ModulesHelp { } {
 global dotversion
-puts stderr "\tmodel-angelo, version 1.0.1"
+puts stderr "\tmodel-angelo, version 1.0.12"
 }
 
 module-whatis "Automatic model building in cryoEM maps. Documentation: https://github.com/3dem/model-angelo"
@@ -11,7 +11,7 @@ conflict pyem epu-group-afis imod cryolo cryodrgn cryoem-utilities kltpicker dee
 
 # To avoid repetitions in this module file
 set program model-angelo
-set version 1.0.1
+set version 1.0.12
 set condaprefix /opt/miniconda3/envs
 set prefix $condaprefix/$program-$version
 

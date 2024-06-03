@@ -1,0 +1,87 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tCCP4 suite, version 8.0"
+}
+
+module-whatis "Macromolecular crystallography software suite"
+
+# To avoid repetitions in this module file
+set program ccp4
+set version 8.0
+set prefix /opt/$program-$version
+
+# Set environment
+# Adapted from bin/ccp4.setup-sh
+# in the CCP4 installation
+
+################### MOST-OFTEN CUSTOMIZED VARIABLES #####################
+
+# CCP4_MASTER is the location of the top-level directory containing ccp4-N.N.
+#setenv CCP4_MASTER /opt/$program
+set CCP4 /opt/$program/$program-$version
+setenv CCP4 /opt/$program/$program-$version
+
+# CCP4_SCR: a per-user directory for run-time-generated scratch files.
+setenv CCP4_SCR "/tmp/`whoami | tr ' \\\\' _`"
+
+# CCP4I_TCLTK - directory containing tclsh, wish and bltwish executables
+#               for ccp4i. The CCP4 suite is distributed with Tcl/Tk 8.4.
+setenv CCP4I_TCLTK $CCP4/bin
+
+# BALBES pipeline with large database
+# I did not install this component
+#test -d "$CCP4/BALBES" && export BALBES_ROOT=$CCP4/BALBES
+
+### Optional - setting http proxy
+#export HTTP_PROXY=wwwblah.blah.ac.uk:xxxx/blah.blah
+
+######################### ALL THE REST ###########################
+
+# This variable is set to ensure that the logfile output from programs
+# compiled with Gfortran is in the correct order.
+setenv GFORTRAN_UNBUFFERED_PRECONNECTED Y
+
+# CBIN: location of the executables -- must be on your path (see below)
+setenv CBIN $CCP4/bin
+# CLIB: location of (binary) library files such as libccp4.a and libccp4.so
+setenv CLIB $CCP4/lib
+# CLIBD: platform-independent data files
+setenv CLIBD $CCP4/lib/data
+# CETC: executable scripts (NOT configuration files)
+setenv CETC $CCP4/etc
+# CINCL: headers and two *.def files for handling "logical names" in CCP4
+setenv CINCL $CCP4/include
+# CHTML: html documentation
+setenv CHTML $CCP4/html
+# CEXAM: examples and some tests
+setenv CEXAM $CCP4/examples
+# source code directories
+#setenv CLIBS $CCP4/lib/libccp4
+#setenv CPROG $CCP4/src
+# CCP4I_TOP: the top directory of the interface
+setenv CCP4I_TOP $CCP4/share/ccp4i
+# MMCIFDIC: platform-dependent (not in $CLIBD) data file for the ccif library
+setenv MMCIFDIC $env(CLIB)/ccp4/cif_mmdic.lib
+# CRANK: location of Crank automation suite within ccp4i
+setenv CRANK $env(CCP4I_TOP)/crank
+# CLIBD_MON: dictionary files for REFMAC5 (keep trailing /)
+setenv CLIBD_MON $CCP4/lib/data/monomers/
+# CCP4_HELPDIR: location of the VMS-style help file used by (ip)mosflm
+# NB trailing /
+setenv CCP4_HELPDIR $CCP4/help/
+
+# PDB_EXTRACT for extract datafiles
+setenv PDB_EXTRACT ${CCP4}/share
+
+# CCP4_OPEN is set to 'UNKNOWN' by default. When set to 'NEW' traditional
+# CCP4 programs treat over-writing of existing files as a fatal error.
+setenv CCP4_OPEN UNKNOWN
+
+prepend-path PATH $CCP4/etc $CCP4/bin
+prepend-path MANPATH $CCP4/share/man
+
+# Need certificate authority certificate file for urllib2 and others
+setenv SSL_CERT_FILE $CCP4/etc/ssl/cacert.pem
+
