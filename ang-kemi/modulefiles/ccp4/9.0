@@ -2,14 +2,14 @@
 
 proc ModulesHelp { } {
 global dotversion
-puts stderr "\tCCP4 suite, version 8.0"
+puts stderr "\tCCP4 suite, version 9.0"
 }
 
 module-whatis "Macromolecular crystallography software suite"
 
 # To avoid repetitions in this module file
 set program ccp4
-set version 8.0
+set version 9
 set prefix /opt/$program-$version
 
 # Set environment
@@ -20,8 +20,8 @@ set prefix /opt/$program-$version
 
 # CCP4_MASTER is the location of the top-level directory containing ccp4-N.N.
 #setenv CCP4_MASTER /opt/$program
-set CCP4 /opt/$program/$program-$version
-setenv CCP4 /opt/$program/$program-$version
+set CCP4 /opt/$program-$version
+setenv CCP4 /opt/$program-$version
 
 # CCP4_SCR: a per-user directory for run-time-generated scratch files.
 setenv CCP4_SCR "/tmp/`whoami | tr ' \\\\' _`"
