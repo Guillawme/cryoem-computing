@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+usage () {
+	echo "Prepare a directory layout for a new model building project"
+	echo "With no argument, populate the current working directory if empty"
+	echo "Usage: mkprojectdir [ /path/to/project/directory ]"
+}
+
+if [[ $# > 1 ]]; then
+	usage
+	exit 1
+fi
+
+if [[ $1 == "-h" || $1 == "--help" ]]; then
+	usage
+	exit 0
+fi
+
+if [[ $# == 0 ]]; then
+	PROJECT_DIR=$(pwd)
+else
+	PROJECT_DIR=$1
+fi
+
+if [[ ! -z "$(ls -A ${PROJECT_DIR})" ]]; then
+	echo "Directory ${PROJECT_DIR} is not empty, can't proceed"
+	echo "Run this in on an empty or non-existing directory"
+	echo "(The directory will be created if it doesn't already exist)"
+	exit 1
+else
+	mkdir -p ${PROJECT_DIR}/maps
+	mkdir -p ${PROJECT_DIR}/maps/series
+	mkdir -p ${PROJECT_DIR}/fsc
+	mkdir -p ${PROJECT_DIR}/locres
+	mkdir -p ${PROJECT_DIR}/orientation-diagnostics
+	mkdir -p ${PROJECT_DIR}/occupy
+	mkdir -p ${PROJECT_DIR}/modelangelo
+	mkdir -p ${PROJECT_DIR}/models
+	mkdir -p ${PROJECT_DIR}/servalcat
+	mkdir -p ${PROJECT_DIR}/phenix/rsr
+	mkdir -p ${PROJECT_DIR}/phenix/validation
+	mkdir -p ${PROJECT_DIR}/phenix/varref
+	mkdir -p ${PROJECT_DIR}/tempy-reff
+fi
+
