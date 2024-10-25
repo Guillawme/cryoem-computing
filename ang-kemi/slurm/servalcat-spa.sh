@@ -4,8 +4,8 @@
 #SBATCH --partition=main
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=20GB
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=10GB
 #SBATCH --oversubscribe
 #SBATCH --output=%x-%j.log
 #SBATCH --error=%x-%j.log
@@ -15,10 +15,15 @@
 # (Sometimes it remains in pending status for a while)
 source /opt/slurm/slurm-start.sh
 
+BASE_DIR=/home/you/project
+
+MAPS=${BASE_DIR}/maps
+MODELS=${BASE_DIR}/models
+
 # Required options
-HALF_MAPS=map_half_?.mrc
-MASK=mask.mrc
-MODEL=model.cif
+HALF_MAPS=${MAPS}/map_half_?.mrc
+MASK=${MAPS}/mask.mrc
+MODEL=${MODELS}/model.cif
 RESOLUTION=1.8
 
 # Advanced options
@@ -29,18 +34,18 @@ HYDROGENS=all # all: add riding hydrogen atoms, yes: use hydrogen atoms if prese
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load servalcat/0.4.60
+module load servalcat/0.4.88
 
-srun servalcat refine_spa \
+srun servalcat refine_spa_norefmac \
 	--halfmaps $HALF_MAPS \
-	--mask $MASK \
 	--model $MODEL \
 	--resolution $RESOLUTION \
 	--mask_for_fofc $MASK \
 	--pg $POINT_GROUP \
 	--ncycle $CYCLES \
 	--hydrogen $HYDROGENS \
-	--output_prefix $MODEL
+	--hout \
+	--adp iso
 
 # Send notification upon job completion
 source /opt/slurm/slurm-completion.sh

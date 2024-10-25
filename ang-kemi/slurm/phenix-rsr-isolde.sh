@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#SBATCH --job-name=phenix-validation-cryoem
+#SBATCH --job-name=phenix-rsr
 #SBATCH --partition=main
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
@@ -15,30 +15,14 @@
 # (Sometimes it remains in pending status for a while)
 source /opt/slurm/slurm-start.sh
 
-BASE_DIR=/home/you/project
-
-MAPS=${BASE_DIR}/maps
-MODELS=${BASE_DIR}/models
-VALIDATION=${BASE_DIR}/phenix/validation
-
-# Settings for model building
-FULL_MAP=${MAPS}/cryosparc_P306_J130_011_volume_map.mrc
-HALF_MAPS=${MAPS}/cryosparc_P306_J130_011_volume_map_half_?.mrc
-MODEL=${MODELS}/model.cif
-PARAMS=${VALIDATION}/run-01/params.eff
-RESOLUTION=3.0
+PARAMETER_FILE=real_space_refine.eff
 
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
 module load phenix/1.21.2-5419
 
-srun phenix.validation_cryoem \
-	$MODEL \
-	$FULL_MAP \
-	$HALF_MAPS \
-	resolution=$RESOLUTION \
-	$PARAMS
+srun phenix.real_space_refine $PARAMETER_FILE
 
 # Send notification upon job completion
 source /opt/slurm/slurm-completion.sh

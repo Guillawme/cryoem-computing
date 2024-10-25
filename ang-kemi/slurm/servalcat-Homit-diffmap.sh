@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-#SBATCH --job-name=phenix-validation-cryoem
+#SBATCH --job-name=servalcat
 #SBATCH --partition=main
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=20GB
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=10GB
 #SBATCH --oversubscribe
 #SBATCH --output=%x-%j.log
 #SBATCH --error=%x-%j.log
@@ -19,26 +19,26 @@ BASE_DIR=/home/you/project
 
 MAPS=${BASE_DIR}/maps
 MODELS=${BASE_DIR}/models
-VALIDATION=${BASE_DIR}/phenix/validation
 
-# Settings for model building
-FULL_MAP=${MAPS}/cryosparc_P306_J130_011_volume_map.mrc
-HALF_MAPS=${MAPS}/cryosparc_P306_J130_011_volume_map_half_?.mrc
+# Required options
+HALF_MAPS=${MAPS}/map_half_?.mrc
+MASK=${MAPS}/mask.mrc
 MODEL=${MODELS}/model.cif
-PARAMS=${VALIDATION}/run-01/params.eff
-RESOLUTION=3.0
+RESOLUTION=1.8
 
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load phenix/1.21.2-5419
+module load servalcat/0.4.88
 
-srun phenix.validation_cryoem \
-	$MODEL \
-	$FULL_MAP \
-	$HALF_MAPS \
-	resolution=$RESOLUTION \
-	$PARAMS
+srun servalcat fofc \
+	--halfmaps $HALF_MAPS \
+	--model $MODEL \
+	--resolution $RESOLUTION \
+	--mask $MASK \
+	--omit_proton \
+	--omit_h_electron \
+	--source electron
 
 # Send notification upon job completion
 source /opt/slurm/slurm-completion.sh
