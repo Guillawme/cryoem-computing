@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+module purge
+module load unison
+
+if [[ -d /run/media/guillaume/GG_32GB ]]; then
+	unison lab-thumb-drive
+	exit 0
+elif [[ -d /run/media/guillaume/GG_5TB ]]; then
+	unison lab-whole-directory
+	exit 0
+else
+	echo "No known external drive found."
+	exit 1
+fi
+
