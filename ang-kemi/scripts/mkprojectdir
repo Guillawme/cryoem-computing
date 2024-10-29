@@ -41,5 +41,6 @@ else
 	mkdir -p ${PROJECT_DIR}/phenix/validation
 	mkdir -p ${PROJECT_DIR}/phenix/varref
 	mkdir -p ${PROJECT_DIR}/tempy-reff
+	mkdir -p ${PROJECT_DIR}/qscore
 fi
 
