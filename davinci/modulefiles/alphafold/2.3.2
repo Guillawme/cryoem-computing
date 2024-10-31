@@ -1,0 +1,27 @@
+#%Module 1.0
+#
+## AlphaFold 2.3.2
+#
+if ![ is-loaded 'cuda/12.6' ] {
+  module load cuda/12.6
+}
+prereq		cuda/12.6
+prepend-path PATH {/scratch/burst/alphafold-2.3.2};
+append-path PYTHONPATH {/scratch/burst/alphafold-2.3.2};
+setenv ALPHAFOLD_DIR /scratch/burst/alphafold-2.3.2
+# Activate the conda environment. This was created using:
+# $ /davinci/Cellar/modules/4.7.0/bin/createmodule.py /scratch/burst/miniconda3/bin/activate alphafold-2.3.2
+# but afterwards I trimmed default directories from PATH
+prepend-path 	 PATH 			 /scratch/burst/miniconda3/envs/alphafold-2.3.1/bin:/scratch/burst/miniconda3/condabin:/davinci/Cellar/modules/4.7.0/bin
+setenv 		 CONDA_DEFAULT_ENV 	 alphafold-2.3.1
+setenv 		 CONDA_EXE 		 /scratch/burst/miniconda3/bin/conda
+setenv 		 CONDA_PREFIX 		 /scratch/burst/miniconda3/envs/alphafold-2.3.1
+setenv 		 CONDA_PROMPT_MODIFIER 	 (alphafold-2.3.1)
+setenv 		 CONDA_PYTHON_EXE 	 /scratch/burst/miniconda3/bin/python
+setenv 		 CONDA_SHLVL 		 1
+setenv 		 _CE_CONDA 		 .
+setenv 		 _CE_M 			 .
+
+# The following line gives problems when unloading the module
+# It deletes $PATH!
+#source-sh bash /scratch/burst/miniconda3/bin activate alphafold-2.3.1
