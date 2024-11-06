@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 #SBATCH --job-name=cryodrgn-preprocess
-#SBATCH --partition=cryoem
+#SBATCH --partition=regular
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
+#SBATCH --cpus-per-task=16
 #SBATCH --mem=64GB
 #SBATCH --oversubscribe
 #SBATCH --output=%x-%j.log
@@ -16,20 +16,20 @@
 source $HOME/opt/slurm/slurm-start.sh
 
 # Configuration options
-PARTICLES=/home/guillaume/cryosparc-projects/CS-2023-05-22-jl08/exports/groups/J74_particles/J74_particles_exported.cs
-DATA_DIR=/home/guillaume/cryosparc-projects/CS-2023-05-22-jl08/exports/groups/J74_particles/J72/extract
+PARTICLES=/home/guillaume/cryosparc-projects/CS-gg25/exports/groups/J130_particles/J130_particles_exported.cs
+DATA_DIR=/home/guillaume/cryosparc-projects/CS-gg25/exports/groups/J130_particles/J130/extract
 RELION_OR_CRYOSPARC=cs # cs if passing a .cs file, rln if passing a .star file
-IMG_DIM=128
-OUT_PARTICLES=JL08-P189-J74_particles_box128.mrcs
-ORIGINAL_IMG_DIM=400
-OUT_POSES=JL08-P189-J74_poses.pkl
-OUT_CTF=JL08-P189-J74_ctf.pkl
-OUT_BACKPROJECTION=JL08-P189-J74_check-map.mrc
+IMG_DIM=140
+OUT_PARTICLES=P306-J130_particles_box140.mrcs
+ORIGINAL_IMG_DIM=512
+OUT_POSES=P306-J130_poses.pkl
+OUT_CTF=P306-J130_ctf.pkl
+OUT_BACKPROJECTION=P306-J130_check-map.mrc
 
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitly (e.g. module/1.2.0)
 module purge
-module load cryodrgn/2.3.0
+module load cryodrgn/3.4.1
 
 OPTIONS=("rln", "cs")
 
@@ -44,12 +44,6 @@ if [[ ! ${OPTIONS[*]} =~ $RELION_OR_CRYOSPARC  ]]; then
 fi
 
 srun cryodrgn downsample \
-	$PARTICLES \
-	--datadir $DATA_DIR \
-	-D $IMG_DIM \
-	-o rec_$OUT_PARTICLES
-
-srun cryodrgn preprocess \
 	$PARTICLES \
 	--datadir $DATA_DIR \
 	-D $IMG_DIM \
@@ -80,7 +74,7 @@ else
 fi
 
 srun cryodrgn backproject_voxel \
-	rec_$OUT_PARTICLES \
+	$OUT_PARTICLES \
 	--poses $OUT_POSES \
 	--ctf $OUT_CTF \
 	-o $OUT_BACKPROJECTION

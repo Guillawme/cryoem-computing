@@ -26,9 +26,9 @@ source $HOME/opt/slurm/slurm-start.sh
 
 # Configuration options
 OUTPUT_DIR=run-01
-PARTICLES=JL08-P189-J74_particles_box128.ft.txt
-POSES=JL08-P189-J74_poses.pkl
-CTF=JL08-P189-J74_ctf.pkl
+PARTICLES=
+POSES=P306-J130_poses.pkl
+CTF=P306-J130_ctf.pkl
 ZDIM=8
 LAYERS=3
 DIM=1024
@@ -37,7 +37,7 @@ EPOCHS=30
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitly (e.g. module/1.2.0)
 module purge
-module load cryodrgn/2.3.0
+module load cryodrgn/3.4.1
 
 # If continuing a previous run, add this option to the command:
 # --load $SLURM_JOB_NAME/weights.49.pkl \
@@ -48,7 +48,7 @@ module load cryodrgn/2.3.0
 
 # Run training
 srun cryodrgn train_vae \
-	--preprocessed \
+	--lazy \
 	--max-threads 16 \
 	--outdir $OUTPUT_DIR \
 	--poses $POSES \

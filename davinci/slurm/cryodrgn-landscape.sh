@@ -34,7 +34,7 @@ GMM_CLUSTERS=10
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitly (e.g. module/1.2.0)
 module purge
-module load cryodrgn/2.3.0
+module load cryodrgn/3.4.1
 
 # Run analysis
 srun cryodrgn analyze_landscape \

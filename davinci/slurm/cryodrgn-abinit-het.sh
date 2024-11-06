@@ -37,7 +37,7 @@ BATCH_SIZE=4
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitly (e.g. module/1.2.0)
 module purge
-module load cryodrgn/2.3.0
+module load cryodrgn/3.4.1
 
 # If continuing a previous run, add this option to the command:
 # --load ${OUTPUT_DIR}/weights.49.pkl \
