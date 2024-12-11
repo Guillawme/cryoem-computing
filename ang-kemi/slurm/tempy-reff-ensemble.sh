@@ -15,7 +15,7 @@
 # (Sometimes it remains in pending status for a while)
 source /opt/slurm/slurm-start.sh
 
-BASE_DIR=
+BASE_DIR=/home/you/project
 
 MAP=${BASE_DIR}/maps/map.mrc
 MODEL=${BASE_DIR}/models/model.mmcif

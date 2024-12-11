@@ -25,6 +25,7 @@ HALF_MAPS=${MAPS}/map_half_?.mrc
 MASK=${MAPS}/mask.mrc
 MODEL=${MODELS}/model.cif
 RESOLUTION=1.8
+OUTPUT_PREFIX=my-model
 
 # Advanced options
 POINT_GROUP=C1

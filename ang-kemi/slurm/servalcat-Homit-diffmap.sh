@@ -36,8 +36,6 @@ srun servalcat fofc \
 	--model $MODEL \
 	--resolution $RESOLUTION \
 	--mask $MASK \
-	--omit_proton \
-	--omit_h_electron \
 	--source electron
 
 # Send notification upon job completion
