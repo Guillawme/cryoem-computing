@@ -41,6 +41,7 @@ srun servalcat refine_spa_norefmac \
 	--halfmaps $HALF_MAPS \
 	--model $MODEL \
 	--resolution $RESOLUTION \
+	--output_prefix $OUTPUT_PREFIX \
 	--mask_for_fofc $MASK \
 	--pg $POINT_GROUP \
 	--ncycle $CYCLES \
