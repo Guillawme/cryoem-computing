@@ -16,4 +16,5 @@ set condaprefix /opt/miniconda3/envs
 set prefix $condaprefix/$program-$version
 
 prepend-path PATH $prefix/bin
+setenv TEMPY_REFF_SCRIPTS /opt/src/tempy-reff/script
 
