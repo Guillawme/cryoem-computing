@@ -1,14 +1,1 @@
-#!/usr/bin/env bash
-
-if [[ $@ == '--version' ]]; then
-	echo '0.2.5'
-	exit 0
-fi
-
-source /home/guillaume/opt/miniconda3/etc/profile.d/conda.sh
-conda activate topaz-0.2.5
-
-topaz $@
-
-conda deactivate
-
+topaz-0.2.5
