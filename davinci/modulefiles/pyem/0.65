@@ -1,0 +1,19 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tpyem, version 0.65"
+}
+
+module-whatis "Utilities to convert particle metadata between CryoSPARC and RELION. Documentation: https://github.com/asarnow/pyem"
+
+conflict topaz epu-group-afis imod cryolo cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2 model-angelo
+
+# To avoid repetitions in this module file
+set program pyem
+set version 0.65
+set condaprefix /home/guillaume/opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+prepend-path PATH $prefix/bin
+
