@@ -1,0 +1,18 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tMEME suite, version 5.5.7"
+}
+
+module-whatis "Motif-based sequence analysis suite. Documentation: https://meme-suite.org/meme"
+
+# To avoid repetitions in this module file
+set program meme
+set version 5.5.7
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/libexec/$program-$version
+prepend-path PATH $prefix/bin
+prepend-path MANPATH $prefix/share/man
+

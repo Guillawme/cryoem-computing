@@ -1,0 +1,27 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tservalcat, version 0.4.99"
+}
+
+module-whatis "Atomic model refinement in cryoEM maps. Documentation: https://github.com/keitaroyam/servalcat"
+
+conflict pyem epu-group-afis imod cryolo cryodrgn cryoem-utilities kltpicker deepemhancer pymol starparser cryoef findmysequence cryocare eman2 topaz model-angelo occupy deepemhancer
+
+module load ccp4/9.0
+
+prereq ccp4
+
+# To avoid repetitions in this module file
+set program servalcat
+set version 0.4.99
+set condaprefix /opt/miniconda3/envs
+set prefix $condaprefix/$program-$version
+
+prepend-path PATH $prefix/bin
+
+# Use the stand-alone monomer library, not CCP4's.
+# Make sure this is up-to-date
+setenv CLIBD_MON /opt/monomers
+
