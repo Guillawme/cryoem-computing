@@ -17,8 +17,11 @@ source /opt/slurm/slurm-start.sh
 
 BASE_DIR=/home/you/project
 
-MAP=${BASE_DIR}/maps/map.mrc
-MODEL=${BASE_DIR}/models/model.mmcif
+MAPS=${BASE_DIR}/maps
+MODELS=${BASE_DIR}/models
+
+MAP=${MAPS}/map.mrc
+MODEL=${MODELS}/model.mmcif
 OUTPUT_DIR=${BASE_DIR}/tempy-reff/run-01/ensemble
 RESOLUTION=2.73
 
