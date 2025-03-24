@@ -24,7 +24,7 @@ TEMPY_REFF=${BASE_DIR}/tempy-reff
 # Required options
 MAP=${MAPS}/map.mrc
 MODEL=${MODELS}/model.cif
-OUTPUT_DIR=${TEMPY_REFF}/run-01
+OUTPUT_DIR=${TEMPY_REFF}/01_refine
 RESOLUTION=1.43 # Resolution of cryo-EM map, required if using CCC for as a convergence method
 
 # GMM refinement options

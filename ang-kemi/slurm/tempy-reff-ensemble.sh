@@ -19,10 +19,11 @@ BASE_DIR=/home/you/project
 
 MAPS=${BASE_DIR}/maps
 MODELS=${BASE_DIR}/models
+TEMPY_REFF=${BASE_DIR}/tempy-reff
 
 MAP=${MAPS}/map.mrc
 MODEL=${MODELS}/model.mmcif
-OUTPUT_DIR=${BASE_DIR}/tempy-reff/run-01/ensemble
+OUTPUT_DIR=${TEMPY_REFF}/01_ensemble
 RESOLUTION=2.73
 
 ENSEMBLE_SIZE=10 # How many models to include in the ensemble. Default: 10
