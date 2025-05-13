@@ -42,5 +42,6 @@ else
 	mkdir -p ${PROJECT_DIR}/phenix/varref
 	mkdir -p ${PROJECT_DIR}/tempy-reff
 	mkdir -p ${PROJECT_DIR}/qscore
+	mkdir -p ${PROJECT_DIR}/sequences
 fi
 
