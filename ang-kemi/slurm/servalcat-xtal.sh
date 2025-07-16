@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-#SBATCH --job-name=servalcat-spa
+#SBATCH --job-name=servalcat-xtal
 #SBATCH --partition=main
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
@@ -15,20 +15,18 @@
 # (Sometimes it remains in pending status for a while)
 source /opt/slurm/slurm-start.sh
 
-BASE_DIR=/home/you/project
+BASE_DIR=/path/to/your/project
 
-MAPS=${BASE_DIR}/maps
+DATA=${BASE_DIR}/data
 MODELS=${BASE_DIR}/models
 
 # Required options
-HALF_MAPS=${MAPS}/map_half_?.mrc
-MASK=${MAPS}/mask.mrc
-MODEL=${MODELS}/model.cif
-RESOLUTION=1.8
-OUTPUT_PREFIX=my-model
+HKLIN=${DATA}/structure-factors.cif
+MODEL=${MODELS}/atomic-model.cif
+OUTPUT_PREFIX=atomic-model_refined
+RESOLUTION=2.44
 
 # Advanced options
-POINT_GROUP=C1
 CYCLES=10 # default, should not need to be changed
 HYDROGENS=all # all: add riding hydrogen atoms, yes: use hydrogen atoms if present, no: remove hydrogen atoms in input. Default: all
 
@@ -37,17 +35,16 @@ HYDROGENS=all # all: add riding hydrogen atoms, yes: use hydrogen atoms if prese
 module purge
 module load servalcat/0.4.99
 
-srun servalcat refine_spa_norefmac \
-	--halfmaps $HALF_MAPS \
+srun servalcat refine_xtal_norefmac \
+	--hklin $HKLIN \
 	--model $MODEL \
-	--resolution $RESOLUTION \
-	--output_prefix $OUTPUT_PREFIX \
-	--mask_for_fofc $MASK \
-	--pg $POINT_GROUP \
-	--ncycle $CYCLES \
 	--hydrogen $HYDROGENS \
-	--hout \
-	--adp iso
+	--ncycle $CYCLES \
+	--adp iso \
+	--source xray \
+	--output_prefix $OUTPUT_PREFIX
+	#--d_min $RESOLUTION
+	#--labin FP,SIGFP,FreeR_flag \
 
 # Send notification upon job completion
 source /opt/slurm/slurm-completion.sh
