@@ -23,7 +23,7 @@ SRC=/path/to/your/data
 DEST=/where/to/copy/your/data
 
 echo "Copying ${SRC} to ${DEST}..."
-rsync -auh --info=progress2 ${SRC} ${DEST}
+rsync -auh --info=progress2 --chmod=D755,F644 ${SRC} ${DEST}
 
 # Send notification upon job completion
 source /opt/slurm/slurm-completion.sh
