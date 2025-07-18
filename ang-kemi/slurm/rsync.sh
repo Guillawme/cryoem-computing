@@ -4,8 +4,8 @@
 #SBATCH --partition=main
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=8GB
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=4GB
 #SBATCH --oversubscribe
 #SBATCH --output=%x-%j.log
 #SBATCH --error=%x-%j.log
@@ -19,10 +19,11 @@ source /opt/slurm/slurm-start.sh
 
 # Mind the trailing slash! Read the rsync manual.
 # A trailing slash at the end of the source will copy the contents of that directory, without the enclosing directory
-SOURCE=/path/to/your/data
+SRC=/path/to/your/data
 DEST=/where/to/copy/your/data
 
-rsync -auh --info=progress2 $SOURCE $DEST
+echo "Copying ${SRC} to ${DEST}..."
+rsync -auh --info=progress2 ${SRC} ${DEST}
 
 # Send notification upon job completion
 source /opt/slurm/slurm-completion.sh
