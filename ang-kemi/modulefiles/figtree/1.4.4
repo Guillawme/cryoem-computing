@@ -1,0 +1,16 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tFigTree"
+}
+
+module-whatis "Phylogenetic tree viewer. Documentation: https://github.com/rambaut/figtree"
+
+# To avoid repetitions in this module file
+set program figtree
+set version 1.4.4
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix/bin
+

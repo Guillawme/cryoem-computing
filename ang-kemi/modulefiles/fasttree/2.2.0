@@ -1,0 +1,16 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tFastTree"
+}
+
+module-whatis "Phylogenetic tree builder. Documentation: https://github.com/morgannprice/fasttree"
+
+# To avoid repetitions in this module file
+set program fasttree
+set version 2.2.0
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix
+

@@ -7,6 +7,10 @@ puts stderr "\tAliView"
 
 module-whatis "Sequence alignment viewer. Documentation: https://ormbunkar.se/aliview"
 
+module load figtree/1.4.4 fasttree/2.2.0
+
+prereq figtree fasttree
+
 # To avoid repetitions in this module file
 set program aliview
 set version 1.28
