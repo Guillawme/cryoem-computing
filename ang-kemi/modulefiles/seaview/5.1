@@ -1,0 +1,16 @@
+#%Module1.0
+
+proc ModulesHelp { } {
+global dotversion
+puts stderr "\tSeaView"
+}
+
+module-whatis "Sequence alignment viewer. Documentation: https://doua.prabi.fr/software/seaview"
+
+# To avoid repetitions in this module file
+set program seaview
+set version 5.1
+set prefix /opt/$program-$version
+
+prepend-path PATH $prefix
+
