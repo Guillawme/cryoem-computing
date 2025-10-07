@@ -21,7 +21,7 @@ MAPS=${BASE_DIR}/maps
 MODELS=${BASE_DIR}/models
 VALIDATION=${BASE_DIR}/phenix/validation
 
-# Settings for model building
+# Inputs
 FULL_MAP=${MAPS}/cryosparc_P306_J130_011_volume_map.mrc
 HALF_MAPS=${MAPS}/cryosparc_P306_J130_011_volume_map_half_?.mrc
 MODEL=${MODELS}/model.cif
