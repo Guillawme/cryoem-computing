@@ -4,8 +4,8 @@
 #SBATCH --partition=main
 #SBATCH --gres=gpu:0
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=16
-#SBATCH --mem=20GB
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=8GB
 #SBATCH --oversubscribe
 #SBATCH --output=%x-%j.log
 #SBATCH --error=%x-%j.log
