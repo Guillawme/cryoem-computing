@@ -25,7 +25,7 @@ HALF_MAPS=${MAPS}/map_half_?.mrc
 MASK=${MAPS}/mask.mrc
 MODEL=${MODELS}/model.cif
 RESOLUTION=1.8
-OUTPUT_PREFIX=my-model
+OUTPUT_PREFIX=model_refined
 
 # Advanced options
 POINT_GROUP=C1
@@ -35,7 +35,7 @@ HYDROGENS=all # all: add riding hydrogen atoms, yes: use hydrogen atoms if prese
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load servalcat/0.4.99
+module load servalcat/0.4.118
 
 srun servalcat refine_spa_norefmac \
 	--halfmaps $HALF_MAPS \

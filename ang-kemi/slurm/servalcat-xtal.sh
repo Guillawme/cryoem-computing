@@ -33,7 +33,7 @@ HYDROGENS=all # all: add riding hydrogen atoms, yes: use hydrogen atoms if prese
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load servalcat/0.4.99
+module load servalcat/0.4.118
 
 srun servalcat refine_xtal_norefmac \
 	--hklin $HKLIN \

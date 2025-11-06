@@ -23,18 +23,20 @@ MODELS=${BASE_DIR}/models
 # Required options
 HALF_MAPS=${MAPS}/map_half_?.mrc
 MASK=${MAPS}/mask.mrc
-MODEL=${MODELS}/model.cif
+MODEL=${MODELS}/model_Homit.cif
 RESOLUTION=1.8
+OUTPUT_PREFIX=model_Homit
 
 # Remember to check which modulefile version is the default one
 # You might want to specify a version explicitely (e.g. module/1.2.0)
 module purge
-module load servalcat/0.4.88
+module load servalcat/0.4.118
 
 srun servalcat fofc \
 	--halfmaps $HALF_MAPS \
 	--model $MODEL \
 	--resolution $RESOLUTION \
+	--output_prefix $OUTPUT_PREFIX \
 	--mask $MASK \
 	--source electron
 
